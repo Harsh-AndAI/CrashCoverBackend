@@ -11,6 +11,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// const auth = new google.auth.GoogleAuth({
+//   keyFile: "google-key.json",
+//   scopes: [
+//     "https://www.googleapis.com/auth/spreadsheets",
+//     "https://www.googleapis.com/auth/drive"
+//   ]
+// });
+
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
   scopes: [
@@ -236,6 +244,7 @@ const accidentPhotoUrls =
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+// Update your app.listen setup to explicitly bind to '0.0.0.0'
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is actively running publicly on port ${PORT}`);
 });
