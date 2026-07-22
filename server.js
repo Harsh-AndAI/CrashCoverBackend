@@ -17,21 +17,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: "google-key.json",
-  scopes: [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"
-  ]
-});
-
 // const auth = new google.auth.GoogleAuth({
-//   credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
+//   keyFile: "google-key.json",
 //   scopes: [
 //     "https://www.googleapis.com/auth/spreadsheets",
-//     "https://www.googleapis.com/auth/drive",
-//   ],
+//     "https://www.googleapis.com/auth/drive"
+//   ]
 // });
+
+const auth = new google.auth.GoogleAuth({
+  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
+  scopes: [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive",
+  ],
+});
 
 const sheets = google.sheets({
   version: "v4",
